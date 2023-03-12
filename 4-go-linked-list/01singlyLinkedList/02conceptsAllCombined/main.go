@@ -91,7 +91,10 @@ func main() {
 	list.PushBack(node4)
 	list.PushBack(node5)
 	list.prepend(node6)
+
+	list.prepend2(2500)
 	list.prepend2(2500)
 	fmt.Println("Length = ", list.Len())
 	list.Display()
+
 }
