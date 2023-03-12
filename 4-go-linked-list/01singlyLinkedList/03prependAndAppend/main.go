@@ -60,7 +60,8 @@ func (l *linkedList) prepend(n *node) {
 }
 
 func main() {
-	node1 := node{data: 20}
+
+	node1 := node{data: 20} //creating node here and passing will cause error if we pass a node multiple times.., so its better to pass values...
 	node2 := node{data: 30}
 	node3 := node{data: 40}
 	node4 := node{data: 50}
@@ -77,7 +78,9 @@ func main() {
 	list.append(&node6)
 	list.append(&node7)
 	list.prepend(&node8)
-	list.append(&node7)
+	fmt.Println("The length is ", list.len())
+	list.display()
+	//list.append(&node7)
 	fmt.Println("The length is ", list.len())
 	list.display()
 	// list.prepend(&node8)
