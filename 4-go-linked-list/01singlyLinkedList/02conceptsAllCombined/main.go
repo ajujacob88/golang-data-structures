@@ -33,7 +33,7 @@ func (l linkedList) Display() {
 }
 
 //Linked List PushBack.. The PushBack Method takes a node as input and links it to the linked list.
-func (l *linkedList) PushBack(n *node) {
+func (l *linkedList) PushBack(n *node) { //this is the append,, adding node at the end
 	if l.head == nil {
 		l.head = n
 		l.tail = n
@@ -46,7 +46,7 @@ func (l *linkedList) PushBack(n *node) {
 }
 
 //this is copied from medium
-func (l *linkedList) prepend(n *node) {
+func (l *linkedList) prepend(n *node) { //adding node at the beginning
 	//create new node
 	// el := &node{
 	// 	data: value,
@@ -64,9 +64,7 @@ func (l *linkedList) prepend(n *node) {
 
 func (l *linkedList) prepend2(value int) {
 	//create new node
-	el := &node{
-		data: value,
-	}
+	el := &node{data: value}
 	// Check if there are nodes in our current list, if no then add new node to the tail
 	// else, set the next to current head and set head to new node
 	if l.length == 0 {
