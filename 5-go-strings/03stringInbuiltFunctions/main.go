@@ -4,6 +4,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"4d63.com/strrev"
 )
 
 func main() {
@@ -55,4 +57,26 @@ func main() {
 
 	//to lower case - func ToLower(s string) string
 	fmt.Println(strings.ToLower("GoPher"))
+
+	//split the string - Split slices s into all substrings separated by sep and returns a slice of the substrings between those separators. func Split(s, sep string) []string
+	//https://pkg.go.dev/4d63.com/strrev#section-readme
+	//https://4d63.com/strrev/
+	fmt.Printf("%q\n", strings.Split("a,b,c", ","))
+	fmt.Printf("%q\n", strings.Split("a man a plan a canal panama", "a "))
+	fmt.Printf("%q\n", strings.Split(" xyz ", ""))
+	fmt.Printf("%q\n", strings.Split("", "Bernardo O'Higgins"))
+	fmt.Printf("%q\n", strings.Split("my name is aju jacob", " "))
+	string1 := "my name is aju jacob"
+	fmt.Println(string1)
+	fmt.Println(strings.Split(string1, " "))
+	string2 := strings.Split(string1, " ")
+	fmt.Println(string2[1])
+
+	// reverse a string - in strrev package - func Reverse(s string) string
+	//but this is not in the standard go library, so we need to type 'go get 4d63.com/strrev' in the terminal and then import "4d63.com/strrev"
+	name := "brototype"
+	stringreverse := strrev.Reverse(name)
+	fmt.Println(name)
+	fmt.Println(stringreverse)
+
 }

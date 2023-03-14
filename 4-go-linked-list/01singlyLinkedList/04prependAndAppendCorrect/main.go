@@ -74,16 +74,40 @@ func main() {
 	list.append(50)
 	list.prepend(100)
 	list.append(30)
-	fmt.Println("Length is:", list.len())
-	list.display()
+	// fmt.Println("Length is:", list.len())
+	// list.display()
 	list.append(50)
 	list.prepend(200)
 	list.append(30)
-	fmt.Println("Length is:", list.len())
+	// fmt.Println("Length is:", list.len())
+	// list.display()
+
 	list.display()
 
-	for i := 0; i < 10; i++ {
-		list.append(i)
+	list.prime()
+}
+
+func (l *linkedList) prime() {
+
+	current := l.head
+
+	for j := 0; j < l.length; j++ {
+
+		num := current.data
+
+		flag := 0
+		for i := 2; i < num-1; i++ {
+			if num%i == 0 {
+				flag++
+
+			}
+			if flag == 1 {
+				fmt.Println("Not prime")
+			} else {
+				fmt.Println("Not prime")
+			}
+		}
+		current = current.next
 	}
-	list.display()
+
 }
