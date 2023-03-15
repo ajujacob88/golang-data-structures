@@ -72,6 +72,15 @@ func main() {
 	string2 := strings.Split(string1, " ")
 	fmt.Println(string2[1])
 
+	var str4 string = "aju jacobb"
+
+	str = strings.Replace(str4, "j", "n", 1)
+
+	fmt.Println(str)
+	str = strings.Replace(str4, "j", "n", 2)
+
+	fmt.Println(str)
+
 	// reverse a string - in strrev package - func Reverse(s string) string
 	//but this is not in the standard go library, so we need to type 'go get 4d63.com/strrev' in the terminal and then import "4d63.com/strrev"
 	name := "brototype"

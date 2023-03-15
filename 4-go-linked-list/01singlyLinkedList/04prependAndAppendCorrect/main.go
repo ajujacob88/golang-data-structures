@@ -76,9 +76,9 @@ func main() {
 	list.append(30)
 	// fmt.Println("Length is:", list.len())
 	// list.display()
-	list.append(50)
+	list.append(5)
 	list.prepend(200)
-	list.append(30)
+	list.append(3)
 	// fmt.Println("Length is:", list.len())
 	// list.display()
 
@@ -95,18 +95,21 @@ func (l *linkedList) prime() {
 
 		num := current.data
 
+		fmt.Println(num)
+
 		flag := 0
-		for i := 2; i < num-1; i++ {
+		for i := 2; i < num; i++ {
 			if num%i == 0 {
 				flag++
 
 			}
-			if flag == 1 {
-				fmt.Println("Not prime")
-			} else {
-				fmt.Println("Not prime")
-			}
 		}
+		if flag == 0 {
+			fmt.Println("prime")
+		} else {
+			fmt.Println("Not prime")
+		}
+
 		current = current.next
 	}
 
