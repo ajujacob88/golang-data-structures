@@ -11,7 +11,7 @@ func factorial(num int) int {
 
 		return 1
 	}
-	fmt.Println(num)
+	//fmt.Println(num)
 	// fact := num * factorial(num-1)
 	// return fact
 	return num * factorial(num-1)

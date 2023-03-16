@@ -29,6 +29,19 @@ func (l *linkedList) display() {
 
 }
 
+func (l *linkedList) displaybackwards() {
+	temp := l.tail
+	for i := 0; i < l.length; i++ {
+		fmt.Printf("%v -> ", temp.data)
+		//if temp.prev != nil {
+		temp = temp.prev
+		//}
+
+	}
+	fmt.Println()
+
+}
+
 func (l *linkedList) append(value int) { // append is same as of singly linked list
 	n := &node{data: value}
 	if l.head == nil {
@@ -55,24 +68,40 @@ func (l *linkedList) prepend(value int) {
 
 		l.head = n
 		l.head.next = current
-		l.head.prev = n
+		l.head.prev = nil
+		current.prev = n
 		l.length++
 
 	}
 }
 
-// func (l *linkedList) insert(index int, value int) {
-// 	n := &node{data: value}
-// 	if index == 0 {
-// 		l.append(value)
-// 		return
-// 	}
-// 	if index == l.length-1 {
-// 		l.prepend(value)
-// 		return
-// 	}
+func (l *linkedList) insert(index int, value int) { //code written by myself
+	n := &node{data: value}
+	if index == 0 {
+		l.append(value)
+		return
+	}
+	if index == l.length-1 {
+		l.prepend(value)
+		return
+	}
 
-// }
+	current := l.head
+	for i := 0; i < l.length-1; i++ {
+		if i == index-1 {
+			temp := current.next
+			current.next = n
+			n.prev = current
+
+			temp.prev = n
+			n.next = temp
+			break
+		}
+		current = current.next
+	}
+	l.length++
+
+}
 
 func main() {
 	list := linkedList{}
@@ -87,7 +116,18 @@ func main() {
 	list.prepend(6666)
 	fmt.Println("Length is:", list.len())
 	list.display()
-	// list.insert(2, 5555)
-	// fmt.Println("Length is:", list.len())
-	// list.display()
+	fmt.Println("hi aju")
+	list.displaybackwards()
+
+	list.insert(2, 999999)
+
+	list.display()
+	list.displaybackwards()
+
+	for i := 0; i < 10; i++ {
+		list.append(i)
+	}
+	list.display()
+
+	list.displaybackwards()
 }

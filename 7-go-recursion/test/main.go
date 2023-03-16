@@ -4,26 +4,6 @@ import (
 	"fmt"
 )
 
-/*
-func main() {
-	for i := 0; i < 10; i++ {
-		fmt.Println(fibonaci(i))
-	}
-}
-
-func fibonaci(num int) int {
-	if num == 0 {
-		return 1
-	}
-	if num == 1 {
-		return 1
-	}
-
-	return fibonaci(num-1) + fibonaci(num-2)
-
-}
-*/
-
 func main() {
 	var str string = "aju jacobb"
 	var ptr = &str
@@ -42,6 +22,16 @@ func main() {
 	test2 = "hi"
 	fmt.Println(test1)
 	fmt.Println(test2)
+	//test1[0] = "s" we cant do like this because string is immutable
+
+	//we can change values of str5 from str6 if we use pointers
+	str5 := "rahul"
+	str6 := &str5
+	*str6 = "jacob"
+	fmt.Println(str5)
+	fmt.Println(*str6) //printing the value
+	fmt.Println(&str5)
+	fmt.Println(str6)
 
 	//variable is immutable data type
 	test3 := 25
