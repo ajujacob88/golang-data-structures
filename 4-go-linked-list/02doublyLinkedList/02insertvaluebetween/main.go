@@ -75,6 +75,59 @@ func (l *linkedList) prepend(value int) {
 	}
 }
 
+func (l *linkedList) insert(index int, value int) { //code written by myself
+	n := &node{data: value}
+	if index == 0 {
+		l.prepend(value)
+		return
+	}
+	if index >= l.length-1 {
+		l.append(value)
+		return
+	}
+
+	// check if the index is closer to head or tail to efficiently insert
+
+	median := l.length / 2
+	//if index is less than median, then traverse from head
+	if index < median {
+		current := l.head
+		for i := 0; i < l.length-1; i++ {
+			if i == index-1 {
+				temp := current.next
+				current.next = n
+				n.prev = current
+
+				temp.prev = n
+				n.next = temp
+				break
+			}
+			current = current.next
+		}
+		l.length++
+
+	} else {
+		// traverse from tail
+		current := l.tail
+		for i := 0; i < l.length-1; i++ {
+			if i == l.length-index-1 {
+				temp := current.prev
+				current.prev = n
+				n.next = current
+
+				temp.next = n
+				n.prev = temp
+
+				break
+			}
+			current = current.prev
+		}
+		l.length++
+
+	}
+
+}
+
 func main() {
 	list := linkedList{}
 	list.append(25)
@@ -90,13 +143,35 @@ func main() {
 	list.display()
 	fmt.Println("hi aju")
 	list.displaytraversebackwards()
+
+	list.insert(2, 999999)
+
 	list.display()
+	//list.displaytraversebackwards()
+
+	list.insert(4, 8888)
+
+	list.display()
+	//list.displaytraversebackwards()
 
 	for i := 0; i < 10; i++ {
 		list.append(i)
 	}
 	list.display()
 
+	//list.displaytraversebackwards()
+
+	list.insert(9, 7435)
+
+	list.display()
+
+	list.insert(17, 333)
+
+	list.display()
+
+	list.insert(25, 999)
+
+	list.display()
 	list.displaytraversebackwards()
 
 }

@@ -1,3 +1,5 @@
+//mutable and immutable
+
 package main
 
 import (
