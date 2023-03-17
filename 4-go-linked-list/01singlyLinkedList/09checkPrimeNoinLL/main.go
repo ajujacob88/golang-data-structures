@@ -84,4 +84,33 @@ func main() {
 
 	list.display()
 
+	list.prime()
+}
+
+func (l *linkedList) prime() {
+
+	current := l.head
+
+	for j := 0; j < l.length; j++ {
+
+		num := current.data
+
+		fmt.Println(num)
+
+		flag := 0
+		for i := 2; i < num; i++ {
+			if num%i == 0 {
+				flag++
+
+			}
+		}
+		if flag == 0 {
+			fmt.Println("prime")
+		} else {
+			fmt.Println("Not prime")
+		}
+
+		current = current.next
+	}
+
 }

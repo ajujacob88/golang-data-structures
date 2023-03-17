@@ -13,7 +13,7 @@ func reverseString(s string) string {
 	var reversed string
 
 	for i := len(s) - 1; i >= 0; i-- {
-		reversed = reversed + string(s[i])
+		reversed = reversed + string(s[i]) - (32)
 
 		// fmt.Println(s[i])
 		// fmt.Println(string(s[i]))
@@ -21,6 +21,41 @@ func reverseString(s string) string {
 
 	return reversed
 }
+
+// Another method - more standard method i think, using rune..but i didnt learned it till now
+// Golang program to reverse a string - https://www.geeksforgeeks.org/how-to-reverse-a-string-in-golang/
+/*
+package main
+
+// importing fmt
+import "fmt"
+
+// function, which takes a string as
+// argument and return the reverse of string.
+func reverse(s string) string {
+    rns := []rune(s) // convert to rune
+    for i, j := 0, len(rns)-1; i < j; i, j = i+1, j-1 {
+
+        // swap the letters of the string,
+        // like first with last and so on.
+        rns[i], rns[j] = rns[j], rns[i]
+    }
+
+    // return the reversed string.
+    return string(rns)
+}
+
+func main() {
+
+    // Reversing the string.
+    str := "Geeks"
+
+    // returns the reversed string.
+    strRev := reverse(str)
+    fmt.Println(str)
+    fmt.Println(strRev)
+}
+*/
 
 /*
 
