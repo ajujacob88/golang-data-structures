@@ -30,7 +30,7 @@ func main() {
 func ascendSortBubbleSort(data []int) []int {
 
 	for i := 0; i < len(data); i++ {
-		for j := 0; j < len(data)-1; j++ {
+		for j := 0; j < len(data)-i-1; j++ { //since -i-1 because no need to go to end after each iteration
 			if data[j+1] < data[j] {
 				data[j], data[j+1] = data[j+1], data[j]
 			}
@@ -44,7 +44,7 @@ func optimisedBubbleSort(data []int) []int { //ref: https://medium.com/@michelle
 
 	for i := 0; i < len(data); i++ {
 		flag := 0
-		for j := 0; j < len(data)-1; j++ {
+		for j := 0; j < len(data)-i-1; j++ {
 			if data[j+1] < data[j] {
 				data[j], data[j+1] = data[j+1], data[j]
 				flag = 1
