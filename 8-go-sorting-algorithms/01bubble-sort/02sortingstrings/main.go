@@ -20,7 +20,7 @@ func main() {
 
 func ascendBubbleSortOptimised(data []string) []string {
 
-	for i := 0; i < len(data); i++ {
+	for i := 0; i < len(data)-1; i++ {
 		flag := 0
 		for j := 0; j < len(data)-i-1; j++ {
 			// if data[j+1] < data[j] {

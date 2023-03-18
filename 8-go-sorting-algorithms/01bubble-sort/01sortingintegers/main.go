@@ -1,6 +1,6 @@
-//sorting a slice in ascending order using bubble sort
+// sorting a slice in ascending order using bubble sort
 // https://blog.devgenius.io/sorting-algorithm-bubble-selection-vs-insertion-vs-merge-which-one-is-the-best-c30ea1a58629
-
+// https://www.youtube.com/watch?v=o4bAoo_gFBU&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU&index=98
 package main
 
 import "fmt"
@@ -42,7 +42,7 @@ func ascendSortBubbleSort(data []int) []int {
 
 func optimisedBubbleSort(data []int) []int { //ref: https://medium.com/@michellekwong2/what-to-know-about-bubble-sort-f0f392905008
 
-	for i := 0; i < len(data); i++ {
+	for i := 0; i < len(data)-1; i++ {
 		flag := 0
 		for j := 0; j < len(data)-i-1; j++ {
 			if data[j+1] < data[j] {

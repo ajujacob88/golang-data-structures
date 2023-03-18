@@ -10,7 +10,7 @@ func main() {
 		{"name": 20, "age": 45},
 	}
 
-	for i := 0; i < len(mapList2); i++ {
+	for i := 0; i < len(mapList2)-1; i++ {
 		for j := 0; j < len(mapList2)-i-1; j++ {
 			// if strings.Compare(mapList2[j+1]["name"], mapList2[j]["name"]) >= 0 {
 			// 	mapList2[j], mapList2[j+1] = mapList2[j+1], mapList2[j]
