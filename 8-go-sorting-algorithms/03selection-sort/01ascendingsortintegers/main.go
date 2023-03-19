@@ -34,8 +34,10 @@ func ascendingSelectionSort(data []int) []int {
 
 /*
 Time Complexity
-Worst Case- O(n²)
-Best Case- O(n) – When the array is already sorted
+Both in Best Case and Worst Case - O(n²) is the time complexity of selection sort
+
 
 Space Complexity
 Space Complexity of selection sort is O(1)
+
+*/
