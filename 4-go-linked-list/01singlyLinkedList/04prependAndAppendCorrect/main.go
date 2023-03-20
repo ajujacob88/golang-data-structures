@@ -2,6 +2,10 @@
 
 //Add a node at the end & beginning
 
+//https://blog.devgenius.io/golang-data-structures-linked-list-1-2e85a90b2605
+
+// https://hackthedeveloper.com/golang-linked-list/
+
 package main
 
 import (
