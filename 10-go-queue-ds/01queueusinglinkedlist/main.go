@@ -89,6 +89,17 @@ func (q *queues) display() {
 
 /*
 
+Applications of Queue
+Queues have a wide application in the real world and some of them are
+
+Printers
+Operating System
+Web Servers
+Liver support systems
+Restaurant orders
+
+https://dineshchandgr.medium.com/linear-data-structures-continued-stack-queue-and-hash-table-81366ff51d52
+
 Stack and queue are one of the data structures that software engineers need to know.
 They can be implemented in a lot of study cases. Stack is helpful when you want to get things out in reverse order from when you put them in.
 One example of a stack is when the computer reads our program.

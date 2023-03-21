@@ -93,8 +93,13 @@ func (s *stack) display() {
 }
 
 /*
-//Applicaton
-reverse a string
-while using undo in word processor
+Applications of Stack
+The Stack has a lot of applications as follows
+
+To implement undo feature
+Build compilers
+Evaluate Expressions like Balance brackets
+Reverse something
+Navigation (web browsers)
 
 */
