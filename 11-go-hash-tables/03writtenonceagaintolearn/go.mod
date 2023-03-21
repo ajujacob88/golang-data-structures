@@ -1,0 +1,3 @@
+module hashtableusingarrayandlinkedlistdoingonceagain
+
+go 1.20

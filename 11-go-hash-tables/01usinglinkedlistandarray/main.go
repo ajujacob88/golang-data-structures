@@ -144,3 +144,30 @@ func main() {
 	fmt.Println(hashTable.search("ANU"))
 
 }
+
+/*
+
+Advantages:
+Simple to implement.
+Hash table never fills up, we can always add more elements to the chain.
+Less sensitive to the hash function or load factors.
+It is mostly used when it is unknown how many and how frequently keys may be inserted or deleted.
+Disadvantages:
+The cache performance of chaining is not good as keys are stored using a linked list. Open addressing provides better cache performance as everything is stored in the same table.
+Wastage of Space (Some Parts of the hash table are never used)
+If the chain becomes long, then search time can become O(n) in the worst case
+Uses extra space for links
+Performance of Chaining:
+Performance of hashing can be evaluated under the assumption that each key is equally likely to be hashed to any slot of the table (simple uniform hashing).
+
+m = Number of slots in hash table
+n = Number of keys to be inserted in hash table
+
+Load factor α = n/m
+Expected time to search = O(1 + α)
+Expected time to delete = O(1 + α)
+
+Time to insert = O(1)
+Time complexity of search insert and delete is O(1) if  α is O(1)
+
+*/
