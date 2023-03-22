@@ -1,3 +1,5 @@
+// All 5 sorts in a single go file.... this is done while doing revision for review... same program but written all in one file
+
 package main
 
 import "fmt"
@@ -80,7 +82,7 @@ func selectionSort(data []int) []int {
 
 */
 
-/*
+/**/
 
 func quickSort(data []int) []int {
 	lowerBount := 0
@@ -112,8 +114,7 @@ func partition(data []int, lb int, ub int) ([]int, int) {
 	return data, i
 }
 
-*/
-
+/*
 
 func mergeSort(data []int) []int {
 
@@ -150,35 +151,3 @@ func merge(first []int, second []int) []int {
 	return final
 }
 */
-
-// once again
-
-func quickSort(data []int) []int {
-
-	return quickSortMain(data, 0, len(data)-1)
-
-}
-
-func quickSortMain(data []int, lb int, ub int) []int {
-	if lb < ub {
-		var pos int
-		data, pos = partition(data, lb, ub)
-		data = quickSortMain(data, lb, pos-1)
-		data = quickSortMain(data, pos+1, ub)
-
-	}
-	return data
-}
-
-func partition(data []int, lb int, ub int) ([]int, int) {
-	pivot := data[ub]
-	i := lb
-	for j := lb; j < ub; j++ {
-		if data[j] < pivot {
-			data[i], data[j] = data[j], data[i]
-			i++
-		}
-	}
-	data[i], data[ub] = data[ub], data[i]
-	return data, i
-}

@@ -1,3 +1,4 @@
+//written by myself - implemented the concept of stack using array without using struct
 package main
 
 import "fmt"

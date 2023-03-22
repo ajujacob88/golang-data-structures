@@ -58,6 +58,21 @@ func (s *stack) push(value string) {
 	}
 	s.top = n
 	s.length++
+
+	//or below done myself
+	/*
+		n := &node{data: value}
+		if s.length == 0 {
+			s.top = n
+			s.bottom = n
+
+			s.length++
+		} else {
+			n.next = s.top
+			s.top = n
+			s.length++
+		}
+	*/
 }
 
 func (s *stack) pop() {

@@ -1,3 +1,5 @@
+//written by myself - implemented the concept of queue using array without using struct
+
 package main
 
 import "fmt"
