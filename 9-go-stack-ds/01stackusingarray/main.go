@@ -54,8 +54,9 @@ func (s *stack) stack(limit int) {
 
 func (s *stack) push(data int) {
 
-	s.stackarr = append(s.stackarr, data)
 	s.top++
+	s.stackarr = append(s.stackarr, data)
+	//s.stackarr[s.top] = data
 }
 
 func (s *stack) isEmpty() bool {
@@ -74,9 +75,10 @@ func (s *stack) isEmpty() bool {
 func (s *stack) pop() {
 	if !s.isEmpty() { // same as s.isEmpty() == false
 		fmt.Println(s.stackarr[s.top])
+		// s.stackarr[s.top] = 0
 		s.top--
 	} else {
-		fmt.Println("Stack is empty")
+		fmt.Println("Stack is emptyy")
 	}
 
 }

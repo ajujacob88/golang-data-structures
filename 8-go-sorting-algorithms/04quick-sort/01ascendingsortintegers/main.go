@@ -79,11 +79,16 @@ In Worst Case - O(n²) is the time complexity of selection sort
 In average case or best case - O(nlogn) which is far better than the bubble, selection and insertion sort..
 
 
-On average, quicksort has a Big O of O(n*log(n)). In the worst case, and assuming we don’t take any steps to protect ourselves, it can break down to O(n^2).
-The partition() function has a single for-loop that ranges from the lowest index to the highest index in the array. By itself, the partition() function is O(n).
+On average, quicksort has a Big O of O(n*log(n)).
+In the worst case, and assuming we don’t take any steps to protect ourselves, it can break down to O(n^2).
+The partition() function has a single for-loop that ranges from the lowest index to the highest index in the array.
+By itself, the partition() function is O(n).
 The overall complexity of quicksort is dependent on how many times partition() is called.
 
-In the worst case, the input is already sorted. An already sorted array results in the pivot being the largest or smallest element in the partition each time. When this is the case, partition() is called a total of n times. In the best case, the pivot is the middle element of each sublist which results in log(n) calls to partition().
+In the worst case, the input is already sorted.
+An already sorted array results in the pivot being the largest or smallest element in the partition each time.
+When this is the case, partition() is called a total of n times.
+In the best case, the pivot is the middle element of each sublist which results in log(n) calls to partition().
 
 
 Finding the median optimization

@@ -9,7 +9,7 @@ type node struct {
 	data string
 }
 
-type stack struct {
+type stack struct { //this is the linked list
 	top, bottom *node
 	length      int
 }

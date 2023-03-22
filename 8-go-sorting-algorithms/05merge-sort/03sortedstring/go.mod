@@ -1,3 +1,3 @@
-module sortingIntegers
+module sortingIntegersMergeSort
 
 go 1.20
