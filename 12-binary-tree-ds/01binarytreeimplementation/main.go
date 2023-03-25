@@ -1,5 +1,89 @@
 package main
 
+import (
+	"fmt"
+)
+
+type node struct {
+	data        int
+	left, right *node
+}
+
+type binaryTree struct {
+	root *node
+}
+
+func (t *binaryTree) insert(value int, toggle int) {
+	n := &node{data: value}
+
+	if t.root == nil {
+		t.root = n
+		return
+	}
+
+	curr := t.root
+
+	//traverse through the tree
+	for curr != nil {
+		if toggle == 0 {
+			if curr.left == nil {
+				curr.left = n
+				break
+			} else if curr.right == nil {
+				curr.right = n
+				break
+			}
+			curr = curr.left
+		} else if toggle == 1 {
+			if curr.right == nil {
+				curr.right = n
+				break
+			} else if curr.left == nil {
+				curr.left = n
+				break
+			}
+			curr = curr.right
+		}
+
+	}
+
+}
+
+func main() {
+
+	tree1 := binaryTree{}
+
+	// tree1.insert(65, "left")
+	// tree1.insert(50, "right")
+	// tree1.insert(70, "left")
+	// tree1.insert(60, "right")
+	// tree1.insert(40, "left")
+	// tree1.insert(71, "left")
+	// tree1.insert(25, "right")
+	// tree1.insert(49, "left")
+	toggle := 0
+	for i := 1; i < 10; i++ {
+		tree1.insert(50*i, toggle)
+		toggle = 1 - toggle
+	}
+
+	fmt.Println("\n Display Inorder traverse is:")
+	displayInorder(tree1.root)
+
+}
+
+func displayInorder(t *node) {
+	if t == nil {
+		return
+	}
+	displayInorder(t.left)
+	fmt.Print(t.data, "-")
+	displayInorder(t.right)
+
+}
+
+/*package main
+
 type node struct {
 	data        int
 	left, right *node
@@ -25,7 +109,7 @@ func (t *binaryTree) insert(value int) *binaryTree {
 func (n *node)insertn(value int)  {
 	if n == nil{
 		return
-	} else if value > 
+	} else if value >
 }
 
 
