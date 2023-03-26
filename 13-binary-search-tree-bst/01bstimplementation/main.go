@@ -118,15 +118,52 @@ func (t *binaryTree) remove(value int) {
 			curr = curr.right
 		}
 	}
-	fmt.Println(curr)
+	//fmt.Println(curr)
 	//if the value we are looking for not found in our tree
 	if curr == nil {
 		fmt.Println("VALUE NOTT FOUND")
 		return
 	}
 
-	//check from the parent node is the value is on the left or the right child?
-	if curr.left != nil && curr.left.data == value {
+	if curr.data == value {
+		//parent := curr
+		rightNode := curr.right
+
+		if rightNode == nil {
+			return
+		}
+
+		if rightNode.left == nil {
+			fmt.Println("in loop 2 - worked fine")
+			t.root = rightNode
+			t.root.right = rightNode.right
+			t.root.left = curr.left
+
+			curr.right, curr.left = nil, nil
+		} else {
+			parentRightNode := rightNode
+			fmt.Println("in loop 3")
+			for rightNode.left != nil {
+				parentRightNode = rightNode
+				rightNode = rightNode.left
+			}
+			// fmt.Println(rightNode)
+			t.root = rightNode
+			// fmt.Println(t.root)
+			// fmt.Println(curr.left)
+			// fmt.Println(curr.right)
+
+			t.root.left = curr.left
+			t.root.right = curr.right
+			parentRightNode = nil
+
+			//fmt.Println("t1 root is", t.root)
+
+			curr.left, curr.right = nil, nil
+		}
+
+		//check from the parent node is the value is on the left or the right child?
+	} else if curr.left != nil && curr.left.data == value {
 		//store the parent
 		parent := curr
 		//store the node we're looking for
@@ -184,7 +221,7 @@ func (t *binaryTree) remove(value int) {
 			parent.right = rightNode
 			rightNode.left, rightNode.right = curr.left, curr.right
 
-			//rightNode.left, rightNode.right = nil, nil
+			rightNode.left, rightNode.right = nil, nil
 
 		}
 
@@ -205,53 +242,60 @@ func main() {
 	tree1.insert(25)
 	tree1.insert(49)
 	tree1.insert(61)
+	tree1.insert(69)
+	tree1.insert(59)
 
-	tree1.remove(65)
+	tree1.remove(50)
+
+	fmt.Println("tree1 root is but", tree1.root)
 
 	//display1(os.Stdout, tree1.root, 0, 'M')
-	fmt.Println("\n Display Inorder traverse is:")
-	displayInorder(tree1.root)
+
+	// fmt.Println("\n Display Inorder traverse is:")
+	// displayInorder(tree1.root)
 	fmt.Println("\n Display Preorder traverse is:")
 	displayPreorder(tree1.root)
-	fmt.Println("\n Display Postorder traverse is:")
-	displayPostorder(tree1.root)
+	// fmt.Println("\n Display Postorder traverse is:")
+	// displayPostorder(tree1.root)
 
-	fmt.Println("")
+	// fmt.Println("")
 
-	tree1.lookup(50)
+	// tree1.lookup(50)
 
-	tree1.lookup(500)
-
-}
-
-func displayInorder(t *node) {
-	if t == nil {
-		return
-	}
-	displayInorder(t.left)
-	fmt.Print(t.data, "-")
-	displayInorder(t.right)
+	// tree1.lookup(500)
 
 }
+
+// func displayInorder(t *node) {
+// 	if t == nil {
+// 		return
+// 	}
+// 	displayInorder(t.left)
+// 	fmt.Print(t.data, "-")
+// 	displayInorder(t.right)
+
+// }
 
 func displayPreorder(t *node) {
 	if t == nil {
+		//fmt.Println(t)
 		return
 	}
 	fmt.Print(t.data, "-")
 	displayPreorder(t.left)
 	displayPreorder(t.right)
+	//time.Sleep(1000000000)
 
 }
 
-func displayPostorder(t *node) {
-	if t == nil {
-		return
-	}
-	displayPostorder(t.left)
-	displayPostorder(t.right)
-	fmt.Print(t.data, "-")
-}
+// func displayPostorder(t *node) {
+// 	if t == nil {
+// 		return
+// 	}
+// 	displayPostorder(t.left)
+// 	displayPostorder(t.right)
+// 	fmt.Print(t.data, "-")
+// }
 
 /*
 //nor need , other method to print
