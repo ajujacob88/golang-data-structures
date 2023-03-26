@@ -1,4 +1,6 @@
 //https://blog.devgenius.io/golang-data-structures-binary-search-tree-3-5a342d9df2cf
+//with referance to the above document, the program written by myself,, there are lot of errors are there in the reference document and many conditions are not checked there.
+//But I corrected all those flaws by myself and this code is now fully correct functional....
 
 package main
 

@@ -70,6 +70,11 @@ func main() {
 	fmt.Println("\n Display Inorder traverse is:")
 	displayInorder(tree1.root)
 
+	fmt.Println("\n Display Preorder traverse is:")
+	displayPreorder(tree1.root)
+	fmt.Println("\n Display Postorder traverse is:")
+	displayPostorder(tree1.root)
+
 }
 
 func displayInorder(t *node) {
@@ -82,45 +87,27 @@ func displayInorder(t *node) {
 
 }
 
-/*package main
-
-type node struct {
-	data        int
-	left, right *node
-}
-
-type binaryTree struct {
-	root *node
-}
-
-func (t *binaryTree) insert(value int) *binaryTree {
-	//creating a new node and store the value
-	//n := &node{data: value}
-
-	if t.root != nil {
-		t.root.insertn(value)
-	} else {
-		t.root = &node{data: value, left: nil, right: nil}
-	}
-	return t
-
-}
-
-func (n *node)insertn(value int)  {
-	if n == nil{
+func displayPreorder(t *node) {
+	if t == nil {
 		return
-	} else if value >
+	}
+	fmt.Print(t.data, "-")
+	displayPreorder(t.left)
+	displayPreorder(t.right)
+
 }
 
-
-func main() {
-
-	tree1 := &binaryTree{}
-	tree1.insert(50)
+func displayPostorder(t *node) {
+	if t == nil {
+		return
+	}
+	displayPostorder(t.left)
+	displayPostorder(t.right)
+	fmt.Print(t.data, "-")
 }
 
 /*
-//stebin babu pgm
+//stebin babu pgm - but written in another lgoic by creating class,,, no need of this
 
 package main
 
