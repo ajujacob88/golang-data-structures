@@ -126,10 +126,12 @@ func (t *binaryTree) remove(value int) {
 	}
 
 	if curr.data == value {
-		//parent := curr
+
 		rightNode := curr.right
 
 		if rightNode == nil {
+			t.root = curr.left
+			curr.left = nil //inorder to pick this up by garbage collector
 			return
 		}
 
@@ -142,7 +144,7 @@ func (t *binaryTree) remove(value int) {
 			curr.right, curr.left = nil, nil
 		} else {
 			parentRightNode := rightNode
-			fmt.Println("in loop 3")
+			fmt.Println("in loop 3 - worked fine")
 			for rightNode.left != nil {
 				parentRightNode = rightNode
 				rightNode = rightNode.left
@@ -155,7 +157,7 @@ func (t *binaryTree) remove(value int) {
 
 			t.root.left = curr.left
 			t.root.right = curr.right
-			parentRightNode = nil
+			parentRightNode.left = nil
 
 			//fmt.Println("t1 root is", t.root)
 
@@ -184,14 +186,17 @@ func (t *binaryTree) remove(value int) {
 			rightNode.left = curr.left
 			curr.right, curr.left = nil, nil
 		} else {
+			parentRightNode := rightNode
 			//if the right child has left child, then traverse to the left until we meet null
 			for rightNode.left != nil {
+				parentRightNode = rightNode
 				rightNode = rightNode.left
 			}
 			//change the left node from our parent to the node that we found
 			parent.left = rightNode
 			//change the left child and the right child to the current child
 			rightNode.left, rightNode.right = curr.left, curr.right
+			parentRightNode.left = nil
 			//make sure delet the connection in the current node so it can get pick up by the garbage collection
 			curr.left, curr.right = nil, nil
 		}
@@ -242,12 +247,12 @@ func main() {
 	tree1.insert(25)
 	tree1.insert(49)
 	tree1.insert(61)
-	tree1.insert(69)
+	tree1.insert(66)
+	tree1.insert(58)
 	tree1.insert(59)
+	tree1.insert(67)
 
 	tree1.remove(50)
-
-	fmt.Println("tree1 root is but", tree1.root)
 
 	//display1(os.Stdout, tree1.root, 0, 'M')
 
