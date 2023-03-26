@@ -121,7 +121,7 @@ func (t *binaryTree) remove(value int) {
 	//fmt.Println(curr)
 	//if the value we are looking for not found in our tree
 	if curr == nil {
-		fmt.Println("VALUE NOTT FOUND")
+		fmt.Println("VALUE NOT FOUND")
 		return
 	}
 
@@ -214,37 +214,41 @@ func (t *binaryTree) remove(value int) {
 			curr.left, curr.right = nil, nil
 		}
 	} else if curr.right.data == value {
-		//the logic below is basically the same as above, the only difference is we change the right child of our parent
-		//fmt.Println("right.data is:", curr.right.data)
+		//store the parent
 		parent := curr
+		//store the node we're looking for
 		curr = curr.right
+		//store the right child from the current node
 		rightNode := curr.right
 
-		//fmt.Println("right node is: ", rightNode)
-
+		//if the right child is nil, then move the left child to our current node
 		if rightNode == nil {
 			parent.right = curr.left
 			curr.left = nil
 			return
 		}
 
+		//if the right child doesnt have any left child, then move the right child to the current node
 		if rightNode.left == nil {
 			parent.right = rightNode
 			rightNode.left = curr.left
 			curr.right, curr.left = nil, nil
 		} else {
 			parentRightNode := rightNode
+			//if the right child has left child, then traverse to the left until we meet null
 			var temp *node
 			for rightNode.left != nil {
 				parentRightNode = rightNode
 				rightNode = rightNode.left
 				temp = rightNode.right
 			}
+			//change the left node from our parent to the node that we found
 			parent.right = rightNode
+			//change the left child and the right child to the current child
 			rightNode.left, rightNode.right = curr.left, curr.right
 			parentRightNode.left = temp
-			rightNode.left, rightNode.right = nil, nil
-
+			//make sure delet the connection in the current node so it can get pick up by the garbage collection
+			curr.left, curr.right = nil, nil
 		}
 
 	}
@@ -272,59 +276,58 @@ func main() {
 	tree1.insert(73)
 	tree1.insert(90)
 	tree1.insert(93)
+	tree1.insert(70)
 
-	tree1.remove(70)
+	tree1.remove(65)
+
+	fmt.Println("\n Display Inorder traverse is:")
+	displayInorder(tree1.root)
+	fmt.Println("\n Display Preorder traverse is:")
+	displayPreorder(tree1.root)
+	fmt.Println("\n Display Postorder traverse is:")
+	displayPostorder(tree1.root)
+
+	fmt.Println("")
+
+	tree1.lookup(50)
+
+	tree1.lookup(500)
 
 	//display1(os.Stdout, tree1.root, 0, 'M')
 
-	// fmt.Println("\n Display Inorder traverse is:")
-	// displayInorder(tree1.root)
-	fmt.Println("\n Display Preorder traverse is:")
-	displayPreorder(tree1.root)
-	// fmt.Println("\n Display Postorder traverse is:")
-	// displayPostorder(tree1.root)
+}
 
-	// fmt.Println("")
-
-	// tree1.lookup(50)
-
-	// tree1.lookup(500)
+func displayInorder(t *node) {
+	if t == nil {
+		return
+	}
+	displayInorder(t.left)
+	fmt.Print(t.data, "-")
+	displayInorder(t.right)
 
 }
 
-// func displayInorder(t *node) {
-// 	if t == nil {
-// 		return
-// 	}
-// 	displayInorder(t.left)
-// 	fmt.Print(t.data, "-")
-// 	displayInorder(t.right)
-
-// }
-
 func displayPreorder(t *node) {
 	if t == nil {
-		//fmt.Println(t)
 		return
 	}
 	fmt.Print(t.data, "-")
 	displayPreorder(t.left)
 	displayPreorder(t.right)
-	//time.Sleep(1000000000)
 
 }
 
-// func displayPostorder(t *node) {
-// 	if t == nil {
-// 		return
-// 	}
-// 	displayPostorder(t.left)
-// 	displayPostorder(t.right)
-// 	fmt.Print(t.data, "-")
-// }
+func displayPostorder(t *node) {
+	if t == nil {
+		return
+	}
+	displayPostorder(t.left)
+	displayPostorder(t.right)
+	fmt.Print(t.data, "-")
+}
 
 /*
-//nor need , other method to print
+// nor need , other method to print
 func display1(w io.Writer, node *node, ns int, ch rune) {
 	if node == nil {
 		return
@@ -337,111 +340,4 @@ func display1(w io.Writer, node *node, ns int, ch rune) {
 	display1(w, node.left, ns+2, 'L')
 	display1(w, node.right, ns+2, 'R')
 }
-*/
-
-// original before editing
-/*
-func (t *binaryTree) remove(value int) {
-	curr := t.root
-	//if we dont have any root, then returns
-	if curr == nil {
-		return
-	}
-	//if we have only root, then check the root
-	if curr.right == nil && curr.left == nil {
-		if curr.data == value {
-			t.root = nil
-		}
-		return
-	}
-
-	//traverse through the tree
-	for curr != nil {
-		//if the value is less than current, then go to the left child, else go to the right.
-		if value < curr.data {
-			//check if the left child is equal to the value
-			//doing this to save the parent node of the value
-			if curr.left != nil && curr.left.data == value {
-				break
-			}
-			curr = curr.left
-		} else {
-			//check if the left child is equal to the value.
-			//doing this to save the parent node of the value
-			if curr.right != nil && curr.right.data == value {
-				break
-			}
-			curr = curr.right
-		}
-	}
-	fmt.Println(curr)
-	//if the value we are looking for not found in our tree
-	if curr == nil {
-		fmt.Println("VALUE NOTT FOUND")
-		return
-	}
-
-	//check from the parent node is the value is on the left or the right child?
-	if curr.left.data == value {
-		//store the parent
-		parent := curr
-		//store the node we're looking for
-		curr = curr.left
-		//store the right child from the current node
-		rightNode := curr.right
-
-		//if the right child is nil, then move the left child to our current node
-		if rightNode == nil {
-			parent.left = curr.left
-			curr.left = nil
-			return
-		}
-
-		//if the right child doesnt have any left child, then move the right child to the current node
-		if rightNode.left == nil {
-			parent.left = rightNode
-			rightNode.left = curr.left
-			curr.right, curr.left = nil, nil
-		} else {
-			//if the right child has left child, then traverse to the left until we meet null
-			for rightNode.left != nil {
-				rightNode = rightNode.left
-			}
-			//change the left node from our parent to the node that we found
-			parent.left = rightNode
-			//change the left child and the right child to the current child
-			rightNode.left, rightNode.right = curr.left, curr.right
-			//make sure delet the connection in the current node so it can get pick up by the garbage collection
-			curr.left, curr.right = nil, nil
-		}
-	} else if curr.right.data == value {
-		//the logic below is basically the same as above, the only difference is we change the right child of our parent
-
-		parent := curr
-		curr = curr.right
-		rightNode := curr.right
-
-		if rightNode == nil {
-			parent.right = curr.left
-			curr.left = nil
-			return
-		}
-
-		if rightNode.left == nil {
-			parent.left = rightNode
-			rightNode.left = curr.left
-			curr.right, curr.left = nil, nil
-		} else {
-			for rightNode.left != nil {
-				rightNode = rightNode.left
-			}
-			parent.right = rightNode
-			rightNode.left, rightNode.right = curr.left, curr.right
-
-		}
-
-	}
-
-}
-
 */
