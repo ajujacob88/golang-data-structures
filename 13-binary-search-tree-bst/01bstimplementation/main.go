@@ -125,7 +125,7 @@ func (t *binaryTree) remove(value int) {
 		return
 	}
 
-	if curr.data == value {
+	if curr.data == value { //this is the case when the root node is deleted,, this is written by myself and works fine
 
 		rightNode := curr.right
 
@@ -136,7 +136,7 @@ func (t *binaryTree) remove(value int) {
 		}
 
 		if rightNode.left == nil {
-			fmt.Println("in loop 2 - worked fine")
+			//fmt.Println("in loop 2 - worked fine")
 			t.root = rightNode
 			t.root.right = rightNode.right
 			t.root.left = curr.left
@@ -144,20 +144,31 @@ func (t *binaryTree) remove(value int) {
 			curr.right, curr.left = nil, nil
 		} else {
 			parentRightNode := rightNode
-			fmt.Println("in loop 3 - worked fine")
+			//fmt.Println("in loop 3 - worked fine")
+			var temp *node
 			for rightNode.left != nil {
 				parentRightNode = rightNode
 				rightNode = rightNode.left
+				//fmt.Println("loop exit rightnode is", rightNode, "rightnode.left is", rightNode.left, "and rightnode.right is", rightNode.right)
+				//rightnode is mutable since its * type, so assign the right to a temp variable
+				temp = rightNode.right
 			}
 			// fmt.Println(rightNode)
+			//fmt.Println("out loop rightnode is", rightNode, "rightnode.left is", rightNode.left, "and rightnode.right is", rightNode.right)
+
 			t.root = rightNode
 			// fmt.Println(t.root)
 			// fmt.Println(curr.left)
 			// fmt.Println(curr.right)
 
 			t.root.left = curr.left
+			//fmt.Println("out loop again is", rightNode, "rightnode.left is", rightNode.left, "and rightnode.right is", rightNode.right)
+
 			t.root.right = curr.right
-			parentRightNode.left = nil
+
+			//parentRightNode.left = rightNode.right
+			parentRightNode.left = temp
+			//fmt.Println("rightnode is", rightNode, "rightnode.left is", rightNode.left, "and rightnode.right is", rightNode.right)
 
 			//fmt.Println("t1 root is", t.root)
 
@@ -188,15 +199,17 @@ func (t *binaryTree) remove(value int) {
 		} else {
 			parentRightNode := rightNode
 			//if the right child has left child, then traverse to the left until we meet null
+			var temp *node
 			for rightNode.left != nil {
 				parentRightNode = rightNode
 				rightNode = rightNode.left
+				temp = rightNode.right
 			}
 			//change the left node from our parent to the node that we found
 			parent.left = rightNode
 			//change the left child and the right child to the current child
 			rightNode.left, rightNode.right = curr.left, curr.right
-			parentRightNode.left = nil
+			parentRightNode.left = temp
 			//make sure delet the connection in the current node so it can get pick up by the garbage collection
 			curr.left, curr.right = nil, nil
 		}
@@ -220,12 +233,16 @@ func (t *binaryTree) remove(value int) {
 			rightNode.left = curr.left
 			curr.right, curr.left = nil, nil
 		} else {
+			parentRightNode := rightNode
+			var temp *node
 			for rightNode.left != nil {
+				parentRightNode = rightNode
 				rightNode = rightNode.left
+				temp = rightNode.right
 			}
 			parent.right = rightNode
 			rightNode.left, rightNode.right = curr.left, curr.right
-
+			parentRightNode.left = temp
 			rightNode.left, rightNode.right = nil, nil
 
 		}
@@ -243,16 +260,20 @@ func main() {
 	tree1.insert(70)
 	tree1.insert(60)
 	tree1.insert(40)
-	tree1.insert(71)
+	tree1.insert(81)
 	tree1.insert(25)
 	tree1.insert(49)
 	tree1.insert(61)
 	tree1.insert(66)
+
 	tree1.insert(58)
 	tree1.insert(59)
 	tree1.insert(67)
+	tree1.insert(73)
+	tree1.insert(90)
+	tree1.insert(93)
 
-	tree1.remove(50)
+	tree1.remove(70)
 
 	//display1(os.Stdout, tree1.root, 0, 'M')
 
