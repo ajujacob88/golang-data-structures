@@ -101,7 +101,7 @@ func main() {
 	fmt.Println("\n Display Preorder traverse is:")
 	displayPreorder(tree1.root)
 
-	fmt.Println("\nclosest value is", tree1.root.findClosestValue(63))
+	fmt.Println("\nclosest value is", tree1.root.findClosestValue(100))
 
 }
 

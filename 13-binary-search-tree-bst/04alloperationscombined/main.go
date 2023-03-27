@@ -234,6 +234,35 @@ func (t *node) findMin() int {
 	return t.left.findMin()
 }
 
+func (n *node) findClosestValue(target int) int {
+	currNode := n
+	closest := n.data
+
+	for currNode != nil {
+		if absDiff(currNode.data, target) < absDiff(closest, target) {
+			closest = currNode.data
+		}
+
+		if target < currNode.data {
+			currNode = currNode.left
+		} else if target > currNode.data {
+			currNode = currNode.right
+		} else {
+			break
+		}
+	}
+
+	return closest
+}
+
+func absDiff(x, y int) int {
+	if x > y {
+		return x - y
+	}
+
+	return y - x
+}
+
 func main() {
 
 	tree1 := binaryTree{}
@@ -277,6 +306,8 @@ func main() {
 
 	fmt.Println("The maximum element in the BST is:", tree1.maxElement())
 	fmt.Println("The minimum element in the BST is:", tree1.root.findMin())
+
+	fmt.Println("\nclosest value is", tree1.root.findClosestValue(100))
 
 }
 
