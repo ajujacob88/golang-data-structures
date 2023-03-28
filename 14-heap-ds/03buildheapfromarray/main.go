@@ -1,6 +1,7 @@
-//https://www.youtube.com/watch?v=3DYIgTC4T1o
-//https://www.youtube.com/watch?v=NEtwJASLU8Q&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU&index=104
-// https://maneeshaindrachapa.medium.com/heap-data-structure-in-golang-98641a32d2e3
+//build heap taken from sethukumar, but don't know is it necessary or not. so no need of this I think
+// by using heapify method the time complexity can be reduced to o(n) instead of o(nlogn).
+//so use heapify method discussed here https://www.youtube.com/watch?v=Q_eia3jC9Ts&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU&index=104
+//don't know wether this program is written in heapify method or not, because I need to check it, i still not checked, just pasted here...
 
 package main
 
@@ -109,12 +110,45 @@ func main() {
 		fmt.Println(m)
 	}
 	m2 := &MaxHeap{}
-	arr1 := []int{10, 20, 30, 5, 7, 9, 11, 13, 15, 17, 1, 5}
+	arr1 := []int{10, 20, 30, 5, 7, 9, 11, 13, 15, 17, 1}
 
-	for _, v := range arr1 {
-		m2.Insert(v)
-		//fmt.Println(m)
+	m2.BuildHeapfun(arr1)
+	fmt.Println("The above array1 build to MaxHeap is", m2)
+}
+
+func (h *MaxHeap) BuildHeapfun(arrayin []int) {
+	h.array = arrayin
+	for i := parent(len(h.array) - 1); i >= 0; i-- {
+
+		//h.shiftDown(i) //shiftdoen is a function taken from Sethukumar, but the maxheapify doen function is same I think
+		h.maxHeapifyDown(i)
+	}
+}
+
+/*
+
+func (h *MaxHeap) shiftDown(currentIdx int) {
+
+	endIdx := len(h.array) - 1
+	leftIdx := left(currentIdx)
+
+	for leftIdx <= endIdx {
+
+		rightIdx := right(currentIdx)
+		var idxToShift int
+		if rightIdx <= endIdx && h.array[rightIdx] > h.array[leftIdx] {
+			idxToShift = rightIdx
+
+		} else {
+			idxToShift = leftIdx
+		}
+
+		if h.array[idxToShift] > h.array[currentIdx] {
+			h.swap(currentIdx, idxToShift)
+		} else {
+			return
+		}
 	}
 
-	fmt.Println("The second array in MaxHeap is", m2)
 }
+*/
