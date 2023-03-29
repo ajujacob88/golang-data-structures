@@ -55,6 +55,7 @@ func (t *Trie) search(word string) bool {
 	if currentNode.isEnd == true {
 		return true
 	}
+
 	return false
 }
 
