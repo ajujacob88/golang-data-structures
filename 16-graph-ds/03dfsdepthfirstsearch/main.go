@@ -100,7 +100,7 @@ func main() {
 	test.Print()
 
 	//test.DFS2()
-	test.DepthFirstSearch(1)
+	//test.DepthFirstSearch(1)
 
 	g := &Graph{}
 	for i := 0; i <= 5; i++ {
@@ -111,7 +111,8 @@ func main() {
 	g.AddEdge(2, 4)
 	g.AddEdge(3, 4)
 	g.AddEdge(4, 5)
-
+	fmt.Println("\nGraph 2:")
+	g.Print()
 	fmt.Println("Depth-First Search:")
 	g.DepthFirstSearch(1)
 	//g.DFS2()

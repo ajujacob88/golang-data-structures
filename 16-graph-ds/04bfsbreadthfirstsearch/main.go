@@ -99,9 +99,25 @@ func main() {
 	test.AddEdge(3, 2)
 	test.Print()
 
-	test.BFS(1)
+	//test.BFS(1)
+
+	g := &Graph{}
+	for i := 0; i <= 5; i++ {
+		g.AddVertex(i)
+	}
+	g.AddEdge(1, 2)
+	g.AddEdge(1, 3)
+	g.AddEdge(2, 4)
+	g.AddEdge(3, 4)
+	g.AddEdge(4, 5)
+	fmt.Println("\nGraph 2:")
+	g.Print()
+	fmt.Println("\nBreadth-First Search :")
+	g.BFS(1)
+
 }
 
+// bfs from chatgpt
 // BFS implements the breadth first search algorithm on the graph
 func (g *Graph) BFS(start int) {
 	// mark all vertices as unvisited
@@ -121,7 +137,7 @@ func (g *Graph) BFS(start int) {
 		// dequeue a vertex from queue and print it
 		s := queue[0]
 		queue = queue[1:]
-		fmt.Printf("\n %v ", s.key)
+		fmt.Printf(" %v", s.key)
 
 		// get all adjacent vertices of the dequeued vertex s
 		// if an adjacent vertex has not been visited, then mark it visited and enqueue it
@@ -132,7 +148,34 @@ func (g *Graph) BFS(start int) {
 			}
 		}
 	}
-	fmt.Println("\n")
-	fmt.Println(visited)
+	// fmt.Println("\n")
+	// fmt.Println(visited)
 
 }
+
+/*
+// another method from chatgpt, both is same only
+func (g *Graph) BFS2(start int) {
+	queue := []*Vertex{}
+	visited := make(map[*Vertex]bool)
+	// get starting vertex and add to queue
+	startVertex := g.getVertex(start)
+	queue = append(queue, startVertex)
+	visited[startVertex] = true
+	// while the queue is not empty
+	for len(queue) > 0 {
+		// remove vertex from queue
+		v := queue[0]
+		queue = queue[1:]
+		// print vertex
+		fmt.Printf("%v ", v.key)
+		// add unvisited adjacent vertices to queue
+		for _, adj := range v.adjacent {
+			if !visited[adj] {
+				queue = append(queue, adj)
+				visited[adj] = true
+			}
+		}
+	}
+}
+*/
