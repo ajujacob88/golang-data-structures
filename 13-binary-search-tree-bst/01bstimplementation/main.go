@@ -53,6 +53,33 @@ func (t *binaryTree) insert(value int) {
 
 }
 
+// this lookup is  written by myself with some modifications from lookup function after this, and this code will works fine if no root is present also..
+func (t *binaryTree) lookup(value int) {
+	if t.root == nil {
+		fmt.Println("The value is not present")
+		return
+	}
+	curr := t.root
+	for curr != nil {
+		if value < curr.data {
+			if value == curr.data {
+				fmt.Println("The value is present")
+				return
+			}
+			curr = curr.left
+		} else {
+			if value == curr.data {
+				fmt.Println("The value is present")
+				return
+			}
+			curr = curr.right
+		}
+	}
+	fmt.Println("The value is Not present")
+
+}
+
+/* this is the code i adapted, from this I created the previous lookup function
 func (t *binaryTree) lookup(value int) {
 	//check if we have only one node
 	if t.root.left == nil && t.root.right == nil {
@@ -84,6 +111,7 @@ func (t *binaryTree) lookup(value int) {
 	}
 
 }
+*/
 
 // node Deletion
 
@@ -317,7 +345,7 @@ func main() {
 
 	fmt.Println("")
 
-	tree1.lookup(50)
+	tree1.lookup(93)
 
 	tree1.lookup(500)
 	//BST status true means the tree is a BST and False means the tree is Not a BST..
