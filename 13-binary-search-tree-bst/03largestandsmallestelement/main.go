@@ -98,6 +98,40 @@ func main() {
 	fmt.Println("The maximum element in the BST is:", tree1.maxElement())
 	fmt.Println("The minimum element in the BST is:", tree1.root.findMin())
 
+	fmt.Println("The maximum element in the BST is(withoutusing recur fn):")
+	tree1.maxElement2()
+	fmt.Println("The minimum element in the BST is(withoutusing recur fn):")
+	tree1.minElement2()
+
+}
+
+// Another method written by myself wihout using recursion function
+func (t *binaryTree) maxElement2() {
+	curr := t.root
+
+	for curr.right != nil {
+		if curr.right.right == nil {
+			fmt.Println("max element is", curr.right.data)
+			return
+		}
+		curr = curr.right
+
+	}
+
+}
+
+func (t *binaryTree) minElement2() {
+	curr := t.root
+
+	for curr.left != nil {
+		if curr.left.left == nil {
+			fmt.Println("min element is", curr.left.data)
+			return
+		}
+		curr = curr.left
+
+	}
+
 }
 
 func displayPreorder(t *node) {
